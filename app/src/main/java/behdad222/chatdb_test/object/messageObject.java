@@ -15,7 +15,7 @@ public class messageObject extends RealmObject {
     private int type;
     private int status;
     private String date;
-    
+
     public double getId() {
         return id;
     }

@@ -2,16 +2,29 @@ package behdad222.chatdb_test;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
 public class MainActivity extends ActionBarActivity {
+    private RecyclerView recycleView;
+    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        recycleView = (RecyclerView) findViewById(R.id.meeting_recycle_view);
+        recycleView.setHasFixedSize(true);
+
+        layoutManager = new LinearLayoutManager(this);
+        recycleView.setLayoutManager(layoutManager);
+//        adapter = new RecycleViewAdapter(meetings, this);
+        recycleView.setAdapter(adapter);
     }
 
 
