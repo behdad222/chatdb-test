@@ -1,6 +1,7 @@
 package behdad222.chatdb_test.object;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by behdad on 3/31/15.
@@ -8,7 +9,8 @@ import io.realm.RealmObject;
 
 public class messageObject extends RealmObject {
 
-    private double id;
+    @PrimaryKey
+    private int id;
     private String conversationId;
     private String senderId;
     private String body;
@@ -16,11 +18,11 @@ public class messageObject extends RealmObject {
     private int status;
     private String date;
 
-    public double getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(double id) {
+    public void setId(int id) {
         this.id = id;
     }
 

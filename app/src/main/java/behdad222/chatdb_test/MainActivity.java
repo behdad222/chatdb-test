@@ -7,24 +7,48 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
+import behdad222.chatdb_test.Adapter.ConversationAdapter;
+import behdad222.chatdb_test.object.conversationObject;
+import io.realm.Realm;
+import io.realm.RealmResults;
+
 
 public class MainActivity extends ActionBarActivity {
     private RecyclerView recycleView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter adapter;
 
+    private Realm realm;
+    private ArrayList<conversationObject> objects;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recycleView = (RecyclerView) findViewById(R.id.meeting_recycle_view);
+        realm = Realm.getInstance(this);
+        objects = new ArrayList<>();
+
+        recycleView = (RecyclerView) findViewById(R.id.main_recycle_view);
         recycleView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);
         recycleView.setLayoutManager(layoutManager);
-//        adapter = new RecycleViewAdapter(meetings, this);
+        adapter = new ConversationAdapter(objects, this);
         recycleView.setAdapter(adapter);
+
+
+
+        RealmResults<conversationObject> result = realm
+                .where(conversationObject.class)
+                .findAll();
+
+        for (int i = 0; i < result.size(); i++)
+            objects.add(result.get(i));
+
+        adapter.notifyDataSetChanged();
     }
 
 
@@ -48,5 +72,12 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
     }
 }
