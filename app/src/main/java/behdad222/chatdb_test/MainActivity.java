@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -45,8 +46,10 @@ public class MainActivity extends ActionBarActivity {
                 .where(conversationObject.class)
                 .findAll();
 
-        for (int i = 0; i < result.size(); i++)
+        for (int i = 0; i < result.size(); i++) {
             objects.add(result.get(i));
+            Log.e("obj", String.valueOf(i));
+        }
 
         adapter.notifyDataSetChanged();
     }
@@ -68,6 +71,26 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            for (int i = 1; i <300; i++) {
+             //   conversationObject obj = new conversationObject();
+//                obj.setId(i);
+//                obj.setConversationId(String.valueOf(i));
+
+                realm.beginTransaction();
+
+                conversationObject obj = realm.createObject(conversationObject.class);
+
+                obj.setId(i);
+                obj.setConversationId(String.valueOf(i));
+//                realm.copyToRealmOrUpdate(obj);
+                realm.commitTransaction();
+
+                objects.add(obj);
+
+
+            }
+
+            adapter.notifyDataSetChanged();
             return true;
         }
 
