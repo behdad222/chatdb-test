@@ -1,5 +1,6 @@
 package behdad222.chatdb_test;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -46,7 +47,10 @@ public class ChatActivity extends ActionBarActivity {
         adapter = new ChatAdapter(objects);
         recycleView.setAdapter(adapter);
 
-        conId = "1";
+
+                Intent intent = getIntent();
+                conId = intent.getStringExtra("id");
+
 
 
 

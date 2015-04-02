@@ -9,7 +9,6 @@ import io.realm.annotations.PrimaryKey;
 
 public class messageObject extends RealmObject {
 
-    @PrimaryKey
     private int id;
     private String conversationId;
     private String senderId;

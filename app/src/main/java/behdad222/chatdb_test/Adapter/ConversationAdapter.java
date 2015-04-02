@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import behdad222.chatdb_test.ChatActivity;
 import behdad222.chatdb_test.R;
 import behdad222.chatdb_test.object.conversationObject;
 
@@ -36,10 +37,10 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
 
         @Override
         public void onClick(View v) {
-//            Intent intent = new Intent(context, DescriptionActivity.class);
-//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//            intent.putExtra("id", meetings.get(getPosition()).getId());
-//            context.startActivity(intent);
+            Intent intent = new Intent(context, ChatActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.putExtra("id", conversationObjects.get(getPosition()).getConversationId());
+            context.startActivity(intent);
         }
 
     }
