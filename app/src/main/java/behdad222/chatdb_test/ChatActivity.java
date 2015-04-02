@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import java.util.ArrayList;
 
+import behdad222.chatdb_test.Adapter.ChatAdapter;
 import behdad222.chatdb_test.Adapter.ConversationAdapter;
 import behdad222.chatdb_test.object.messageObject;
 import io.realm.Realm;
@@ -42,7 +43,7 @@ public class ChatActivity extends ActionBarActivity {
 
         layoutManager = new LinearLayoutManager(this);
         recycleView.setLayoutManager(layoutManager);
-        adapter = new ConversationAdapter(objects, this);
+        adapter = new ChatAdapter(objects);
         recycleView.setAdapter(adapter);
 
         conId = "1";
