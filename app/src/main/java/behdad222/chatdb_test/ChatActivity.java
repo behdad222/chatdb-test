@@ -83,7 +83,8 @@ public class ChatActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            for (int j = 1; j<10; j++) {
+            for (int j = 1; j<3000; j++) {
+                Log.e("j = " , ""+ j );
             for (int i = 1; i <300; i++) {
                 //   conversationObject obj = new conversationObject();
 //                obj.setId(i);
